@@ -1,5 +1,5 @@
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Document, Types } from "mongoose";
 
 
 @Schema()
@@ -24,6 +24,8 @@ export class Course {
     @Prop()
     createdAt: Date;
 
+    @Prop({type: [{name: {type: String}, color: {type: String} }]})
+    skills : Types.Array<Record <string, any>>
 }
 
 export const CourseSchema = SchemaFactory.createForClass(Course);

@@ -1,0 +1,36 @@
+meta {
+  name: Registrar cursos
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3000/courses
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "title" :"SIIGO",
+    "description" :"hola",
+    "weeks": 12345,
+    "tuition":6543,
+    "miniumSkill": "alto",
+    "createdAt": "2024-11-12",
+    "skills": [
+      {
+        "name": "hacker",
+        "color": "blue"
+      }, {
+        "name": "hola",
+        "color": "red"
+      }
+    ]
+    
+  }
+}

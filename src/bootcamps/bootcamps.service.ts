@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateBootcampDto } from './dto/create-bootcamp.dto';
 import { UpdateBootcampDto } from './dto/update-bootcamp.dto';
 import { Model } from 'mongoose';
@@ -11,13 +11,17 @@ export class BootcampsService {
   constructor(@InjectModel(Bootcamp.name) private bootcampModel: Model<Bootcamp>){}
   
  async create(createBootcampDto: CreateBootcampDto) {
-     
     const newBootcamp= new this.bootcampModel(createBootcampDto);
-    return await newBootcamp.save()
+    try{
+      return await newBootcamp.save()
+    }catch(error){
+      throw new BadRequestException(`Error al guardar: ${error}`)
+    }
+
   }
 
    async findAll() {
-    return  await this.bootcampModel.find().exec();
+    return  await this.bootcampModel.find().populate('category').exec();
   }
 
   findOne(id: string) {

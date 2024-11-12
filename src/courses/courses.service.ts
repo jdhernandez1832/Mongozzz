@@ -1,5 +1,5 @@
 import { Course } from './entities/course.entity';
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { Model } from 'mongoose';
@@ -9,8 +9,14 @@ import {InjectModel}  from "@nestjs/mongoose"
 @Injectable()
 export class CoursesService {
   constructor(@InjectModel(Course.name) private courseModel: Model<Course>){}
-  create(createCourseDto: CreateCourseDto) {
-    return 'This action adds a new course';
+ async create(createCourseDto: CreateCourseDto) {
+    const newCourse= new this.courseModel(createCourseDto);
+    try{
+      return await newCourse.save()
+    }catch(error){
+      throw new BadRequestException(`Error al guardar: ${error}`)
+    }
+
   }
 
   async findAll() {

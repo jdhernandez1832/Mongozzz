@@ -30,6 +30,7 @@
     "class-validator": "^0.14.1",
     "mongodb": "^6.10.0",
     "mongoose": "^8.8.0",
+    "nest_mongo_2902081": "file:",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
   },

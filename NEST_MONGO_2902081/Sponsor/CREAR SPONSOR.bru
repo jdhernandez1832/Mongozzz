@@ -1,11 +1,11 @@
 meta {
-  name: CREAR BOOTCAMPS
+  name: CREAR SPONSOR
   type: http
-  seq: 4
+  seq: 1
 }
 
 post {
-  url: http://localhost:3000/bootcamps
+  url: http://localhost:3000/sponsor
   body: json
   auth: none
 }
@@ -16,6 +16,7 @@ headers {
 
 body:json {
   {
-    
+    "name" :"SIIGO",
+    "nit" :"2343532-8"
   }
 }
